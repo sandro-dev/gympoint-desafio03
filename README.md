@@ -49,3 +49,4 @@ Código Desenvolvido por Sandro Santos - Referente ao desáfio 02 do treinamento
 
 # TODO
 - students email -> corrigir unique
+- corrigir isAdmin
