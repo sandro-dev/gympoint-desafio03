@@ -1,5 +1,4 @@
 import Plan from '../models/Plan';
-import User from '../models/User';
 
 class PlanController {
   async index(req, res) {
@@ -12,14 +11,6 @@ class PlanController {
 
   async store(req, res) {
     const { title, duration, price } = req.body;
-
-    const checkIsAdmin = await User.findOne({
-      where: { id: req.userId, isadmin: true },
-    });
-
-    if (!checkIsAdmin) {
-      return res.status(401).json({ error: 'Only Admins can create a plan' });
-    }
 
     const plan = await Plan.create({
       title,
@@ -35,14 +26,6 @@ class PlanController {
 
     const { title, duration, price } = req.body;
 
-    const checkIsAdmin = await User.findOne({
-      where: { id: req.userId, isadmin: true },
-    });
-
-    if (!checkIsAdmin) {
-      return res.status(401).json({ error: 'Only Admins can update a plan' });
-    }
-
     const plan = await Plan.findByPk(planId);
 
     plan.title = title;
@@ -55,14 +38,6 @@ class PlanController {
 
   async delete(req, res) {
     const { planId } = req.params;
-
-    const checkIsAdmin = await User.findOne({
-      where: { id: req.userId, isadmin: true },
-    });
-
-    if (!checkIsAdmin) {
-      return res.status(401).json({ error: 'Only Admins can delete a plan' });
-    }
 
     const plan = await Plan.findByPk(planId);
     plan.destroy();
