@@ -1,11 +1,10 @@
-import { addMonths, isBefore, parseISO, format } from 'date-fns';
-import pt from 'date-fns/locale/pt-BR';
+import { addMonths, isBefore, parseISO } from 'date-fns';
 import Registration from '../models/Registration';
 import Plan from '../models/Plan';
 import Student from '../models/Student';
 
-import Mail from '../../lib/Mail';
-import { formatPrice } from '../../util/format';
+import Queue from '../../lib/Queue';
+import RegistrationMail from '../jobs/RegistrationMail';
 
 class RegistrationController {
   async index(req, res) {
@@ -58,23 +57,11 @@ class RegistrationController {
 
     const student = await Student.findOne({ where: { id: student_id } });
 
-    await Mail.sendMail({
-      to: `${student.name} <${student.email}>`,
-      subject: `Bem vindo a Gympoint!`,
-      template: 'registration',
-      context: {
-        student: student.name,
-        plan_title: plan.title,
-        price: formatPrice(plan.price),
-        start_date: format(parseISO(start_date), "dd' de 'MMMM' de 'yyyy", {
-          locale: pt,
-        }),
-        end_date: format(
-          addMonths(parseISO(start_date), plan.duration),
-          "dd' de 'MMMM' de 'yyyy",
-          { locale: pt }
-        ),
-      },
+    /** Job Mail for registry student */
+    await Queue.add(RegistrationMail.key, {
+      student,
+      plan,
+      start_date,
     });
 
     return res.json(registration);
