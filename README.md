@@ -39,6 +39,13 @@ O projeto será desenvolvido aos poucos até o fim do treinamento, quando teremo
 - O aluno não se autentica no sistema, ou seja, não possui senha.
 
 
+# Comandos
+
+- `yarn add`: para adicionar as dependências do projeto
+- `yarn dev`: para executar o servidor
+- `yarn queue`: para executar o servidor que processa as filas
+
+
 ## Licença
 
 Esse projeto está sob a licença MIT.
