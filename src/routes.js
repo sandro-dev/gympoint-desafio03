@@ -8,6 +8,7 @@ import SessionController from './app/controllers/SessionController';
 import StudentController from './app/controllers/StudentController';
 import PlanController from './app/controllers/PlanController';
 import RegistrationController from './app/controllers/RegistrationController';
+import CheckinController from './app/controllers/CheckinController';
 
 const routes = new Router();
 
@@ -21,6 +22,9 @@ routes.post('/sessions', SessionController.store);
 routes.use(authMiddleware);
 
 routes.put('/users', UserController.update);
+
+routes.get('/students/:studentId/checkins', CheckinController.index);
+routes.post('/students/:studentId/checkins', CheckinController.store);
 
 routes.use(checkadminMiddleware);
 
