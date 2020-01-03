@@ -3,7 +3,7 @@ import pt from 'date-fns/locale/pt-BR';
 import Mail from '../../lib/Mail';
 import { formatPrice } from '../../util/format';
 
-class RegistryMail {
+class RegistrationMail {
   get key() {
     return 'RegistrationMail';
   }
@@ -11,7 +11,7 @@ class RegistryMail {
   async handle({ data }) {
     const { student, plan, start_date } = data;
 
-    console.log('The Queue was executed');
+    console.log('The Queue for registration students was executed');
 
     await Mail.sendMail({
       to: `${student.name} <${student.email}>`,
@@ -34,4 +34,4 @@ class RegistryMail {
   }
 }
 
-export default new RegistryMail();
+export default new RegistrationMail();
