@@ -1,8 +1,8 @@
 import Mail from '../../lib/Mail';
 
-class AnswerQuestion {
+class AnswerMail {
   get key() {
-    return 'AnswerQuestion';
+    return 'AnswerMail';
   }
 
   async handle({ data }) {
@@ -12,8 +12,8 @@ class AnswerQuestion {
 
     await Mail.sendMail({
       to: `${student.name} <${student.email}>`,
-      subject: `Resposta a sua pergunta`,
-      template: 'registration',
+      subject: `[RE] ${question}`,
+      template: 'answer',
       context: {
         student,
         question,
@@ -23,4 +23,4 @@ class AnswerQuestion {
   }
 }
 
-export default new AnswerQuestion();
+export default new AnswerMail();
