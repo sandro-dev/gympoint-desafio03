@@ -57,3 +57,18 @@ Código Desenvolvido por Sandro Santos - Referente ao desáfio 02 do treinamento
 # TODO
 - students email -> corrigir unique
 - corrigir isAdmin
+
+
+
+[OK] Crie uma rota para o aluno cadastrar pedidos de auxílio apenas informando seu ID de cadastro (ID do banco de dados);
+`Exemplo de requisição: POST https://gympoint.com/students/3/help-orders`
+
+[OK] Crie uma rota para listar todos pedidos de auxílio de um usuário com base em seu ID de cadastro;
+`Exemplo de requisição: GET https://gympoint.com/students/3/help-orders`
+
+[OK] Crie uma rota para a academia listar todos pedidos de auxílio sem resposta;
+
+[OK] Crie uma rota para a academia responder um pedido de auxílio:
+`Exemplo de requisição: POST https://gympoint.com/help-orders/1/answer`
+
+[OK] Quando um pedido de auxílio for respondido, o aluno deve receber um e-mail da plataforma com a pergunta e resposta da academia;

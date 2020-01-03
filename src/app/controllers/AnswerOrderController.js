@@ -8,6 +8,7 @@ class AnswerOrderController {
   async index(req, res) {
     const orders = await HelpOrder.findAll({
       where: { answer_at: null },
+      order: [['created_at', 'ASC']],
     });
     return res.json(orders);
   }
